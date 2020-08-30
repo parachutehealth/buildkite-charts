@@ -3,7 +3,7 @@ CHARTS_URL = https://buildkite.github.io/charts
 CT_IMAGE = quay.io/helmpack/chart-testing:v3.0.0
 COMMIT = $(shell git rev-parse --short HEAD)
 
-.PHONY: lint shellcheck clean build publish
+.PHONY: lint shellcheck clean build release
 
 # Lints the chart changes against origin/master
 lint:
