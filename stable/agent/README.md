@@ -35,6 +35,8 @@ helm install --name bk-agent --namespace buildkite buildkite/agent \
   --set registryCreds.gcrServiceAccountKey="$(cat gcr_service_account.key | base64)"
 ```
 
+> **Note**: if your pipeline uses docker for build images or run containers, you must set `dind.enabled` to `true`.
+
 Where `--set` values contain:
 ```
 agentToken: Buildkite token read from file
