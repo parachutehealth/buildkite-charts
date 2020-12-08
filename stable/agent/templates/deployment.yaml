@@ -119,6 +119,8 @@ spec:
           - name: service-key
             mountPath: /etc/service_key
           {{- end }}
+          resources:
+{{ toYaml .Values.dind.resources | indent 12 }}
 {{- end }}
 {{- if .Values.podContainers }}{{ toYaml .Values.podContainers | nindent 8 }}{{- end }}
 {{- with .Values.podSecurityContext }}
