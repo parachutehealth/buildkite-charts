@@ -120,6 +120,7 @@ Without using DinD, you can follow the lower part of the guide [here](https://bu
 As the hooks directory is set to a shared dir, currently the best way to add your own hooks while using DinD consists of two steps.
 1. Follow the guide above for usage without DinD.
 2. Add an entrypoint script to your values.yml that copies the hooks from the image to the shared dir. E.g:
+
 ```
 entrypointd: 
   01-copy-hooks: |
