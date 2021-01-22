@@ -107,3 +107,23 @@ helm install --name bk-agent --namespace buildkite buildkite/agent -f values.yam
 ## Buildkite pipeline examples
 
 Check for examples of `pipeline.yml` and `build/deploy` scripts [here](pipeline-examples).
+
+
+## Adding agent hooks to agent pods
+
+Adding your own hooks (e.g. environment hooks) depends on whether you use DinD or not.
+
+#### Without Docker-in-Docker
+Without using DinD, you can follow the lower part of the guide [here](https://buildkite.com/docs/agent/v3/docker#adding-hooks) 
+
+#### With Docker-in-Docker
+As the hooks directory is set to a shared dir, currently the best way to add your own hooks while using DinD consists of two steps.
+1. Follow the guide above for usage without DinD.
+2. Add an entrypoint script to your values.yml that copies the hooks from the image to the shared dir. E.g:
+```
+entrypointd: 
+  01-copy-hooks: |
+    #!/bin/sh
+    set -euo pipefail
+    cp /buildkite/hooks/* /var/buildkite/hooks
+```
