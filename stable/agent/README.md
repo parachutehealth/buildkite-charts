@@ -125,5 +125,6 @@ entrypointd:
   01-copy-hooks: |
     #!/bin/sh
     set -euo pipefail
-    cp /buildkite/hooks/* /var/buildkite/hooks
+    mkdir -p /var/buildkite/hooks
+    cp /buildkite/hooks/* /var/buildkite/hooks/.
 ```
