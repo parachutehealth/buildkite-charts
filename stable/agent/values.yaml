@@ -191,3 +191,19 @@ dind:
 # Duration in seconds the pod needs to terminate gracefully.
 # May be increased to allow pipelines to complete successfully before the pod is terminated.
 terminationGracePeriodSeconds: 30
+
+# Control the lifecycle management for the deployment
+lifecycle:
+  # if useDefault is true, we will use the buildkite/charts default for managing
+  # the lifecycle of the pod. Specifically, we will kill all "buildkite-agent"
+  # processes in the container before shutting down. Please note that there is
+  # some concern that, on some some container images, this will have the
+  # negative effect of causing builds to stop as well. See
+  # https://github.com/buildkite/charts/pull/87 for more discussion
+  useDefault: true
+
+  # Both preStop and postStart are optional values to be executed for the
+  # containers' lifecycle. Note that these cannot be specified if useDefault is
+  # true See: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/
+  preStop: {}
+  postStart: {}
