@@ -76,6 +76,11 @@ spec:
 {{- if .Values.extraEnv }}
 {{ toYaml .Values.extraEnv | nindent 12 }}
 {{- end }}
+{{- if .Values.lifecycle.useDefault }}
+{{- if or .Values.lifecycle.preStop .Values.lifecycle.postStart }}
+{{ fail "lifecycle.useDefault set to true, but lifecycle.preStop/lifecycle.postStart specified"}}
+{{- end }}
+          # DEFAULT LIFECYCLE HOOK
           lifecycle:
             preStop:
               exec:
@@ -83,6 +88,19 @@ spec:
                   - /bin/sh
                   - -c
                   - kill -s SIGTERM `/bin/pidof buildkite-agent` && while pidof -q buildkite-agent; do sleep 1; done
+{{- else if or .Values.lifecycle.preStop .Values.lifecycle.postStart }}
+          lifecycle:
+            # LIFECYCLE PRE STOP
+{{- if .Values.lifecycle.preStop }}
+            preStop:
+{{- toYaml .Values.lifecycle.preStop | nindent 14 }}
+{{- end }}
+            # LIFECYCLE POST START
+{{- if .Values.lifecycle.postStart }}
+            postStart:
+{{- toYaml .Values.lifecycle.postStart | nindent 14 }}
+{{- end }}
+{{- end }}
           livenessProbe:
 {{ toYaml .Values.livenessProbe | indent 12 }}
           resources:
