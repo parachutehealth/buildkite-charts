@@ -19,15 +19,15 @@ spec:
         app: {{ template "name" . }}
         release: {{ .Release.Name }}
       annotations:
-        checksum/binarystore: {{ include (print $.Template.BasePath "/secret.yaml") . | sha256sum }}
+        checksum/secret: {{ include (print $.Template.BasePath "/secret.yaml") . | sha256sum }}
         {{- if .Values.registryCreds.gcrServiceAccountKey }}
-        checksum/binarystore: {{ include (print $.Template.BasePath "/secret-gcr.yaml") . | sha256sum }}
+        checksum/secret-gcr: {{ include (print $.Template.BasePath "/secret-gcr.yaml") . | sha256sum }}
         {{- end }}
         {{- if .Values.registryCreds.dockerConfig }}
-        checksum/binarystore: {{ include (print $.Template.BasePath "/secret-registry.yaml") . | sha256sum }}
+        checksum/secret-registry: {{ include (print $.Template.BasePath "/secret-registry.yaml") . | sha256sum }}
         {{- end }}
         {{- if .Values.registryCreds.dockerconfigjson }}
-        checksum/binarystore: {{ include (print $.Template.BasePath "/secret-dockerconfigjson.yaml") . | sha256sum }}
+        checksum/secret-dockerconfigjson: {{ include (print $.Template.BasePath "/secret-dockerconfigjson.yaml") . | sha256sum }}
         {{- end }}
 {{- with .Values.podAnnotations }}
 {{ toYaml . | indent 8 }}
