@@ -1,6 +1,6 @@
 UPSTREAM_GIT_URL = git@github.com:buildkite/charts.git
 CHARTS_URL = https://buildkite.github.io/charts
-CT_IMAGE = quay.io/helmpack/chart-testing:v3.5.0
+CT_IMAGE = quay.io/helmpack/chart-testing:v3.6.0
 COMMIT = $(shell git rev-parse --short HEAD)
 
 .PHONY: lint shellcheck clean build release
