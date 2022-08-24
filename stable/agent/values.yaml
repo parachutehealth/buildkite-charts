@@ -187,6 +187,7 @@ dind:
   # requests:
   #  cpu: 100m
   #  memory: 128Mi
+  volumeMounts: {}
 
 # Duration in seconds the pod needs to terminate gracefully.
 # May be increased to allow pipelines to complete successfully before the pod is terminated.
