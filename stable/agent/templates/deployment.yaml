@@ -136,15 +136,15 @@ spec:
           - name: DOCKER_TLS_CERTDIR
             value: ""
           volumeMounts:
-          {{- if .Values.dind.volumeMounts }}{{ toYaml .Values.dind.volumeMounts | nindent 12 }}{{- end }}
-          - name: "docker-graph-storage"
-            mountPath: "/var/lib/docker"
-          - name: shared-volume
-            mountPath: "/var/buildkite"
-          {{- if .Values.registryCreds.gcrServiceAccountKey }}
-          - name: service-key
-            mountPath: /etc/service_key
-          {{- end }}
+            {{- if .Values.dind.volumeMounts }}{{ toYaml .Values.dind.volumeMounts | nindent 12 }}{{- end }}
+            - name: "docker-graph-storage"
+              mountPath: "/var/lib/docker"
+            - name: shared-volume
+              mountPath: "/var/buildkite"
+            {{- if .Values.registryCreds.gcrServiceAccountKey }}
+            - name: service-key
+              mountPath: /etc/service_key
+            {{- end }}
           resources:
 {{ toYaml .Values.dind.resources | indent 12 }}
 {{- end }}
