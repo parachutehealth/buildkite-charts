@@ -93,6 +93,7 @@ Parameter | Description | Default
 `dind.image` | Image to use for Docker-in-Docker (DinD) pod container | `docker:19.03-dind`
 `dind.port` | Port Docker-in-Docker (DinD) daemon listens on as REST request proxy | `2375`
 `dind.resources` | Pod resource requests & limits for dind sidecar (if enabled) | `{}`
+`dind.volumeMounts` | Extra volumeMounts configuration | `nil`
 `terminationGracePeriodSeconds` | Duration in seconds the pod needs to terminate gracefully | `30`
 
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`.
