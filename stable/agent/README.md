@@ -92,6 +92,7 @@ Parameter | Description | Default
 `dind.enabled` | Enable preconfigured Docker-in-Docker (DinD) pod configuration | `false`
 `dind.image` | Image to use for Docker-in-Docker (DinD) pod container | `docker:19.03-dind`
 `dind.port` | Port Docker-in-Docker (DinD) daemon listens on as REST request proxy | `2375`
+`dind.mtu` | The MTU used for Docker-inDocker (DinD) daemon. Must be lower than pod networking interface | `1500`
 `dind.resources` | Pod resource requests & limits for dind sidecar (if enabled) | `{}`
 `dind.volumeMounts` | Extra volumeMounts configuration | `nil`
 `terminationGracePeriodSeconds` | Duration in seconds the pod needs to terminate gracefully | `30`
