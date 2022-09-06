@@ -132,7 +132,7 @@ spec:
           image: {{ .Values.dind.image | default "docker:19.03-dind" }}
           args:
             - "--mtu"
-            - {{ .Values.dind.mtu | default "1500" }}
+            - "{{ .Values.dind.mtu | default "1500" }}"
           securityContext:
             privileged: true
           env:
