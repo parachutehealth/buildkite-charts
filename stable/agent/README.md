@@ -35,6 +35,13 @@ helm install --name bk-agent --namespace buildkite buildkite/agent \
   --set registryCreds.gcrServiceAccountKey="$(cat gcr_service_account.key | base64)"
 ```
 
+Alternatively, an external secret can be referenced for the agent token and agent SSH key:
+```console
+helm install --name bk-agent --namespace buildkite buildkite/agent \
+  --set agent.externalSecretName="buildkite-agent-secret",agent.tags="role=production" \
+  --set agent.externalSecretTokenKey="agent-token",agent.externalSecretSSHKey="agent-ssh"
+```
+
 > **Note**: if your pipeline uses docker for build images or run containers, you must set `dind.enabled` to `true`.
 
 Where `--set` values contain:
@@ -67,13 +74,16 @@ Parameter | Description | Default
 `image.repository` | Image repository | `buildkite/agent`
 `image.tag` | Image tag | ``
 `image.pullPolicy` | Image pull policy | `IfNotPresent`
-`agent.token` | Agent token | Must be specified
+`agent.externalSecretName` | Name of a `Secret` to load the agent token and agent private SSH key from. Takes precedence over `.agent.token` and `.privateSshKey` | `nil`
+`agent.externalSecretTokenKey` | Name of the Key in the above secret where the agent token is located | `agent-token`
+`agent.externalSecretSSHKey` | Name of the key in the above secret where the agent private SSH is located | `nil`
+`agent.token` | Agent token | Must be specified unless `agent.externalSecretName` is set
 `agent.tags` | Agent tags | `role=agent`
 `enableHostDocker` | Mount docker socket | `true`
 `podSecurityContext` | Pod security context to set | `{}`
 `securityContext` | Container security context to set | `{}`
 `extraEnv` | Agent extra env vars | `nil`
-`privateSshKey` | Agent ssh key for git access | `nil`
+`privateSshKey` | Agent ssh key for git access. Also see `.agent.externalSecretName` | `nil`
 `registryCreds.gcrServiceAccountKey` | GCP Service account json key | `nil`
 `registryCreds.dockerConfig` | Private registry docker config.json | `nil`
 `entrypointd` | Add files to /docker-entrypoint.d/ via a ConfigMap | `{}`

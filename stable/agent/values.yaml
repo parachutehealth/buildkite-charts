@@ -16,6 +16,9 @@ agent:
   token: ""
   # Agent tags, which can be used to assign jobs
   tags: "role=agent"
+  externalSecretName: ""
+  externalSecretTokenKey: "agent-token"
+  externalSecretSSHKey: ""
 
 # Enable mounting the hosts docker socket into the agent container
 enableHostDocker: true
