@@ -37,6 +37,10 @@ spec:
       imagePullSecrets:
       - name: {{ template "fullname" . }}-dockerconfigjson
       {{- end }}
+{{- if .Values.podInitContainers }}
+      initContainers:
+{{ toYaml .Values.podInitContainers | nindent 8 }}
+{{- end }}
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ default .Chart.AppVersion .Values.image.tag }}"

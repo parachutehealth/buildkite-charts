@@ -99,6 +99,7 @@ Parameter | Description | Default
 `affinity` | Node/pod affinity | `{}`
 `podAnnotations` | Extra annotation to apply to the pod | `{}`
 `podContainers` | Extra pod container or sidecar configuration | `nil`
+`podInitContainers` | Extra pod init containers | `nil`
 `dind.enabled` | Enable preconfigured Docker-in-Docker (DinD) pod configuration | `false`
 `dind.image` | Image to use for Docker-in-Docker (DinD) pod container | `docker:19.03-dind`
 `dind.port` | Port Docker-in-Docker (DinD) daemon listens on as REST request proxy | `2375`
