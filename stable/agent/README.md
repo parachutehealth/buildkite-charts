@@ -107,6 +107,8 @@ Parameter | Description | Default
 `dind.resources` | Pod resource requests & limits for dind sidecar (if enabled) | `{}`
 `dind.volumeMounts` | Extra volumeMounts configuration | `nil`
 `terminationGracePeriodSeconds` | Duration in seconds the pod needs to terminate gracefully | `30`
+`nameOverride` | Provide a name to override the default `$name` template variable | `nil`
+`fullnameOverride` | Provide a name to substitute for the full names of resources | `nil`
 
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`.
 
