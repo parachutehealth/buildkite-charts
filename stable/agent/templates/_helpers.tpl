@@ -33,3 +33,14 @@ Set the Deployment API version based on the version of Kubernetes the chart is b
 {{- print "apps/v1" -}}
 {{- end -}}
 {{- end -}}
+
+{{/*
+Define Pdb apiVersion
+*/}}
+{{- define "pdb.apiVersion" -}}
+{{- if .Capabilities.APIVersions.Has "policy/v1" }}
+{{- printf "policy/v1" -}}
+{{- else }}
+{{- printf "policy/v1beta1" -}}
+{{- end }}
+{{- end }}
