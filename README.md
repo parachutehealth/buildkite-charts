@@ -1,3 +1,6 @@
+# ⚠️ Deprecation Notice
+We've since iterated on other solutions for using Buildkite with k8s. Please check out [github.com/buildkite/agent-stack-k8s](github.com/buildkite/agent-stack-k8s) for a supported solution. We'll continue to accept PRs for this repository, but won't be doing any active maintenance. 
+
 # Buildkite Helm Charts Repository 
 
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/Apache-2.0)
